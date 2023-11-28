@@ -125,7 +125,7 @@ async function onConversation() {
               dataSources.value.length - 1,
               {
                 dateTime: new Date().toLocaleString(),
-                text: lastText + (data.text ?? ''),
+                text: lastText + (data.choices[0].text ?? ''),
                 inversion: false,
                 error: false,
                 loading: true,
@@ -256,7 +256,7 @@ async function onRegenerate(index: number) {
               index,
               {
                 dateTime: new Date().toLocaleString(),
-                text: lastText + (data.text ?? ''),
+                text: lastText + (data.choices[0].text ?? ''),
                 inversion: false,
                 error: false,
                 loading: true,
@@ -265,7 +265,7 @@ async function onRegenerate(index: number) {
               },
             )
 
-            if (openLongReply && data.detail.choices[0].finish_reason === 'length') {
+            if (openLongReply && data.choices[0].finish_reason === 'length') {
               options.parentMessageId = data.id
               lastText = data.text
               message = ''
